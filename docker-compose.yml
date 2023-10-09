@@ -1,0 +1,45 @@
+version: '3'
+services:
+  community-web:
+    container_name: community-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_PROFILE: prod
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      community-db:
+        condition: service_healthy
+    environment:
+      APP_PROFILE: 'prod'
+      MYSQLHOST: 'containers-us-west-47.railway.app'
+      MYSQLDATABASE: 'railway'
+      MYSQLPORT: '6830'
+      MYSQLUSER: 'root'
+      MYSQLPASSWORD: 'IKtmJ7qw7lpIruzDSwO4'
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    networks:
+      - network
+
+  community-db:
+    container_name: community-db
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 30s
+      retries: 3
+    networks:
+      - network
+
+networks:
+  network:
