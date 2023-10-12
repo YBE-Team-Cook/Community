@@ -13,13 +13,10 @@ services:
     depends_on:
       community-db:
         condition: service_healthy
+    env_file:
+      - database/core-prod.env
     environment:
       APP_PROFILE: 'prod'
-      MYSQLHOST: 'containers-us-west-47.railway.app'
-      MYSQLDATABASE: 'railway'
-      MYSQLPORT: '6830'
-      MYSQLUSER: 'root'
-      MYSQLPASSWORD: 'IKtmJ7qw7lpIruzDSwO4'
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
