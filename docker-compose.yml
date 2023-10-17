@@ -17,6 +17,7 @@ services:
       - database/core-prod.env
     environment:
       APP_PROFILE: 'prod'
+
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
