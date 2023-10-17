@@ -15,25 +15,25 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    // c
+
     @PostMapping
     public AccountDtoResponse createAccount(@RequestBody AccountDtoRequest accountDtoRequest) {
         return accountService.addAccount(AccountDtoRequest.of("new email01", "new name01", "new password01"));
     }
 
-    // r
+
     @GetMapping("{id}")
     public AccountDtoResponse getAccount(@PathVariable final Long id) {
         return accountService.findAccountById(id);
     }
 
-    // u
+
     @PatchMapping()
     public AccountDtoResponse updateAccount(@RequestBody AccountDtoRequest accountDtoRequest){
         return accountService.modifyAccount(AccountDtoRequest.of("new email07", "new name07", "new password07"));
     }
 
-    // d
+
     @DeleteMapping("{id}")
     public AccountDtoResponse deleteAccount(@PathVariable final Long id){
         return accountService.removeAccountById(id);
