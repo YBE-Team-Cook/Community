@@ -13,6 +13,8 @@ services:
     depends_on:
       community-db:
         condition: service_healthy
+    env_file:
+      - database/core-prod.env
     environment:
       APP_PROFILE: 'prod'
 
