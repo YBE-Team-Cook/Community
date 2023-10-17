@@ -21,6 +21,14 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	//jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.11'
+
+	// lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+
 	//yml 취약점 보안 2.0 CVE-2002-41854
 	implementation 'org.yaml:snakeyaml:2.2'
 }
