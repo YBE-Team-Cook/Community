@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Getter
 @Entity
-public class Account {
+public class Account extends AuditingField{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
