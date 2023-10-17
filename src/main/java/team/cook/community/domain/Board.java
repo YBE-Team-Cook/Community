@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Getter
 @Entity
-public class Board {
+public class Board extends AuditingField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
