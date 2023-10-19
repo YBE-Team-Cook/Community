@@ -11,14 +11,14 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    public AccountController(AccountService accountService){
+    public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
 
 
     @PostMapping
     public AccountDtoResponse createAccount(@RequestBody AccountDtoRequest accountDtoRequest) {
-        return accountService.addAccount(AccountDtoRequest.of("new email01", "new name01", "new password01"));
+        return accountService.addAccount(accountDtoRequest);
     }
 
 
@@ -28,15 +28,15 @@ public class AccountController {
     }
 
 
-    @PatchMapping()
-    public AccountDtoResponse updateAccount(@RequestBody AccountDtoRequest accountDtoRequest){
-        return accountService.modifyAccount(AccountDtoRequest.of("new email07", "new name07", "new password07"));
+    @PatchMapping("{id}")
+    public AccountDtoResponse updateAccount(@PathVariable final Long id, @RequestBody AccountDtoRequest accountDtoRequest) {
+        return accountService.modifyAccount(id, accountDtoRequest);
     }
 
 
     @DeleteMapping("{id}")
-    public AccountDtoResponse deleteAccount(@PathVariable final Long id){
-        return accountService.removeAccountById(id);
+    public void deleteAccount(@PathVariable final Long id) {
+        accountService.removeAccountById(id);
     }
 
 }
