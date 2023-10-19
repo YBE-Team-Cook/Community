@@ -8,7 +8,7 @@ public interface AccountService {
 
     AccountDtoResponse findAccountById(Long id);
 
-    AccountDtoResponse modifyAccount(AccountDtoRequest of);
+    AccountDtoResponse modifyAccount(Long id, AccountDtoRequest accountDtoRequest);
 
-    AccountDtoResponse removeAccountById(Long id);
+    boolean removeAccountById(Long id);
 }

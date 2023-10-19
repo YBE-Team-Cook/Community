@@ -29,12 +29,35 @@ public class AccountServiceImpl implements AccountService {
     @Transactional(readOnly = true)
     @Override
     public AccountDtoResponse findAccountById(Long id) {
-        return null;
+        Account account = accountRepository.getReferenceById(id);
+        return AccountDtoResponse.fromEntity(account);
     }
 
     @Override
-    public AccountDtoResponse modifyAccount(AccountDtoRequest of) {
-        return null;
+    public AccountDtoResponse modifyAccount(Long id, AccountDtoRequest request) {
+
+        Account account = accountRepository.getReferenceById(id);
+
+        // TODO 이건 아닌듯 -> 도메인에서 처리할 수 있음(더티체킹 활용)
+
+//        String newEmail = account.getEmail();
+//        String newName = account.getName();
+//        String newPassword = account.getPassword();
+//        if(request.email() != null) { newEmail = request.email(); }
+//        if(request.name() != null) { newName = request.name(); }
+//        if(request.password() != null) { newPassword = request.password(); }
+//        Account newAccount = Account.of(account.getId(), newEmail, newName, newPassword);
+//        Account modifyAccount = accountRepository.save(newAccount);
+
+//        Account.builder()
+//                .email(request.email())
+//                ...
+
+
+        // Account 안에 update() -> 더티체킹
+        account.updateAccount(request);
+
+        return AccountDtoResponse.fromEntity(account);
     }
 
     @Override
