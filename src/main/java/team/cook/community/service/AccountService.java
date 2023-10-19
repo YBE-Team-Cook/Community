@@ -4,7 +4,7 @@ import team.cook.community.dto.request.AccountDtoRequest;
 import team.cook.community.dto.response.AccountDtoResponse;
 
 public interface AccountService {
-    AccountDtoResponse addAccount(AccountDtoRequest of);
+    AccountDtoResponse addAccount(AccountDtoRequest accountDtoRequest);
 
     AccountDtoResponse findAccountById(Long id);
 

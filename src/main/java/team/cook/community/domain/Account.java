@@ -2,12 +2,13 @@ package team.cook.community.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import team.cook.community.dto.request.AccountDtoRequest;
 
 import java.util.Objects;
 
 @Getter
 @Entity
-public class Account extends AuditingField{
+public class Account extends AuditingField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,8 @@ public class Account extends AuditingField{
     @Column(nullable = false, length = 255)
     private String password;
 
-    protected Account() {}
+    protected Account() {
+    }
 
     private Account(Long id, String email, String name, String password) {
         this.id = id;
@@ -45,5 +47,18 @@ public class Account extends AuditingField{
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void updateAccount(AccountDtoRequest accountDtoRequest) {
+        if (accountDtoRequest.email() != null) {
+            this.email = accountDtoRequest.email();
+        }
+        if (accountDtoRequest.name() != null) {
+            this.name = accountDtoRequest.name();
+        }
+        if (accountDtoRequest.password() != null) {
+            this.password = accountDtoRequest.password();
+        }
+
     }
 }
